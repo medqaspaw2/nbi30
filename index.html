@@ -11,12 +11,7 @@
 
 
 
-          /* تعديل شبكة الفئات للترتيب الجديد */
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-        }
+         
 
         /* ستايل معرض الصور الجديد */
         .swiper {
@@ -60,22 +55,9 @@
             cursor: pointer;
         }
 
-        @media (max-width: 768px) {
-            /* تعديل شبكة الفئات للموبايل - صفين ثابتين */
-            .categories-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.5rem;
-            }
+       
 
-            /* ترتيب الفئات بشكل محدد */
-            .category-card[data-category="cars"] { order: 1; }
-            .category-card[data-category="real-estate"] { order: 2; }
-            .category-card[data-category="phones"] { order: 3; }
-            .category-card[data-category="electronics"] { order: 4; }
-            .category-card[data-category="furniture"] { order: 5; }
-            .category-card[data-category="fashion"] { order: 6; }
-            .category-card[data-category="tools"] { order: 7; }
-            .category-card[data-category="games"] { order: 8; }
+           
 
             .category-card {
                 padding: 1rem;
@@ -165,9 +147,7 @@
                 aspect-ratio: 1; /* مربع تماماً */
             }
 
-            .category-icon {
-                font-size: 1.5rem; /* أيقونات أصغر */
-            }
+            
 
             .category-card h3 {
                 font-size: 0.9rem; /* نص أصغر */
@@ -312,7 +292,7 @@
         }
 
         .category-icon {
-            font-size: 2rem;
+            font-size: 4rem;
             color: #3498db;
         }
 
@@ -337,7 +317,7 @@
         }
 
         .product-image {
-            width: 100%;
+            width: 100px%;
             height: 200px;
             object-fit: cover;
         }
