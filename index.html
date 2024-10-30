@@ -1,14 +1,148 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NBI30 Marketplace</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        /* الستايل الأساسي يبقى كما هو */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
 
+        /* باقي الستايل الأصلي ... */
+        /* [Previous CSS remains the same until the categories-grid] */
 
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        /* تعديلات جديدة للموبايل */
+        @media (max-width: 768px) {
+            /* تعديل الهيدر للموبايل */
+            header {
+                flex-direction: column;
+                padding: 0.5rem;
+            }
+
+            .logo {
+                height: 30px; /* شعار أصغر للموبايل */
+                margin-bottom: 0.5rem;
+            }
+
+            .search-container {
+                margin: 0.5rem 0;
+                flex-direction: column;
+            }
+
+            .select-container {
+                width: 100%;
+                min-width: unset;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            /* تعديل أزرار المستخدم */
+            .user-actions {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                margin-top: 0.5rem;
+            }
+
+            .btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+                margin: 0;
+            }
+
+            /* تعديل شبكة الفئات للموبايل - صفين في كل سطر */
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+            }
+
+            /* تعديل بطاقات الفئات */
+            .category-card {
+                padding: 1rem;
+                aspect-ratio: 1; /* مربع تماماً */
+            }
+
+            .category-icon {
+                font-size: 1.5rem; /* أيقونات أصغر */
+            }
+
+            .category-card h3 {
+                font-size: 0.9rem; /* نص أصغر */
+                margin-top: 0.3rem;
+            }
+
+            /* تعديل شبكة المنتجات */
+            .products-grid {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            /* تعديل النافذة المنبثقة */
+            .modal-content {
+                width: 95%;
+                margin: 1rem auto;
+                padding: 1rem;
+            }
+
+            .product-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .action-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            /* تعديل قسم التعليقات */
+            .comment-form {
+                margin-top: 1rem;
+            }
+
+            .comment-input {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* تحسينات إضافية للشاشات الصغيرة جداً */
+        @media (max-width: 320px) {
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.3rem;
+            }
+
+            .category-card {
+                padding: 0.8rem;
+            }
+
+            .category-icon {
+                font-size: 1.2rem;
+            }
+
+            .category-card h3 {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
 /* Reset and base styles */
 /* Base styles remain the same */
 * {
