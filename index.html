@@ -366,8 +366,8 @@ body {
             <h2 id="modalTitle"></h2>
             <div class="product-gallery">
                 <img src="BMW1.jpg" alt="BMW1.jpg" class="gallery-image">
-                <img src="/api/placeholder/400/200" alt="BMW2.jpg" class="gallery-image">
-                <img src="/api/placeholder/400/200" alt="BMW3.jpg" class="gallery-image">
+                <img src="BMW2.jpg" alt="BMW2.jpg" class="gallery-image">
+                <img src="MW3.jpg" alt="BMW3.jpg" class="gallery-image">
             </div>
             <div id="modalPrice" class="product-price"></div>
             <p id="modalDescription" class="product-description"></p>
@@ -415,7 +415,6 @@ body {
                     description: "سيارة BMW الفئة السابعة 2020 بحالة ممتازة، لون أسود، فرش جلد، كاميرا خلفية، حساسات ركن.",
                     location: "casablanca",
                     image: "BMW1.jpg",
-                     image: "BMW2.jpg",
                     date: "منذ 3 أيام"
                 },
                 {
@@ -424,7 +423,8 @@ body {
                     price: "500,000 درهم",
                     description: "مرسيدس E-Class موديل 2021، حالة ممتازة، فل اوبشن",
                     location: "rabat",
-                    image: "/api/placeholder/400/200",
+                    image: "car.jpg",
+                    image2: "car.jpg",
                     date: "منذ 5 أيام"
                 }
             ],
@@ -435,7 +435,7 @@ body {
                     price: "12,000 درهم",
                     description: "هاتف iPhone 13 Pro Max بذاكرة 256GB، لون سيرا بلو، حالة ممتازة",
                     location: "rabat",
-                    image: "/api/placeholder/400/200",
+                    image: "phone.jpg",
                     date: "منذ يومين"
                 }
             ]
@@ -616,11 +616,11 @@ product.description.toLowerCase().includes(searchQuery.toLowerCase())
         products.furniture = [
             {
                 id: 'furn1',
-                title: "طقم كنب مودرن",
+                title: "موتور مازال نقي بلاكه صغيره",
                 price: "8,000 درهم",
-                description: "طقم كنب مودرن 7 مقاعد، لون رمادي، قماش مستورد",
-                location: "marrakech",
-                image: "/api/placeholder/400/200",
+                description: " MBK موديل 2019 50 سلندر تحتاج بعض الاصلاحات",
+                location: "fes",
+                image: "motorcycle.jpg",
                 date: "منذ 4 أيام"
             }
         ];
