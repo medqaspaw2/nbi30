@@ -381,8 +381,10 @@
 </head>
 <body>
     <header>
-        <img src="assets\images\nbii3o.png" alt="NBI30 Marketplace" class="logo">
-        
+        <img src="nbii3o.png" alt="NBI30 Marketplace" class="logo">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- All the existing content goes here -->
+</div>
         <div class="search-container">
             <div class="select-container">
                 <select class="city-select" id="citySelect">
@@ -397,6 +399,8 @@
             </div>
             <input type="search" class="search-box" placeholder="ابحث عن منتجات..." id="searchInput">
         </div>
+
+        
 
         <div class="user-actions">
             <a href="login.html" class="btn btn-primary">تسجيل الدخول</a>
@@ -447,16 +451,26 @@
             <!-- Products will be dynamically loaded here -->
         </section>
     </main>
-
+<div class="container">
+    <!-- رأس الصفحة -->
+    <div class="search-container">
+        <!-- محتوى البحث -->
+    </div>
+    
+    <!-- الفئات -->
+    <div class="categories-grid">
+        <!-- بطاقات الفئات -->
+    </div>
+</div>
     <!-- Product Modal -->
     <div id="productModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <h2 id="modalTitle"></h2>
             <div class="product-gallery">
-                <img src="/api/placeholder/400/200" alt="صورة المنتج 1" class="gallery-image">
-                <img src="/api/placeholder/400/200" alt="صورة المنتج 2" class="gallery-image">
-                <img src="/api/placeholder/400/200" alt="صورة المنتج 3" class="gallery-image">
+                <img src="BMW1.jpg" alt="BMW1.jpg" class="gallery-image">
+                <img src="BMW2.jpg" alt="BMW2.jpg" class="gallery-image">
+                <img src="BMW3.jpg" alt="BMW3.jpg" class="gallery-image">
             </div>
             <div id="modalPrice" class="product-price"></div>
             <p id="modalDescription" class="product-description"></p>
@@ -503,17 +517,17 @@
                     price: "450,000 درهم",
                     description: "سيارة BMW الفئة السابعة 2020 بحالة ممتازة، لون أسود، فرش جلد، كاميرا خلفية، حساسات ركن.",
                     location: "casablanca",
-                    image: "/api/placeholder/400/200",
+                    image: "BMW1.jpg",
                     date: "منذ 3 أيام"
                 },
-                
                 {
                     id: 'car2',
                     title: "مرسيدس E-Class 2021",
                     price: "500,000 درهم",
                     description: "مرسيدس E-Class موديل 2021، حالة ممتازة، فل اوبشن",
                     location: "rabat",
-                    image: "/api/placeholder/400/200",
+                    image: "car.jpg",
+                    image2: "car.jpg",
                     date: "منذ 5 أيام"
                 }
             ],
@@ -524,7 +538,7 @@
                     price: "12,000 درهم",
                     description: "هاتف iPhone 13 Pro Max بذاكرة 256GB، لون سيرا بلو، حالة ممتازة",
                     location: "rabat",
-                    image: "/api/placeholder/400/200",
+                    image: "phone.jpg",
                     date: "منذ يومين"
                 }
             ]
@@ -697,7 +711,7 @@ product.description.toLowerCase().includes(searchQuery.toLowerCase())
                 price: "25,000 درهم",
                 description: "لابتوب MacBook Pro موديل 2023، معالج M2، ذاكرة 16GB",
                 location: "casablanca",
-                image: "/api/placeholder/400/200",
+                image: "mac.jpg",
                 date: "منذ يوم واحد"
             }
         ];
@@ -705,11 +719,11 @@ product.description.toLowerCase().includes(searchQuery.toLowerCase())
         products.furniture = [
             {
                 id: 'furn1',
-                title: "طقم كنب مودرن",
+                title: "موتور مازال نقي بلاكه صغيره",
                 price: "8,000 درهم",
-                description: "طقم كنب مودرن 7 مقاعد، لون رمادي، قماش مستورد",
-                location: "marrakech",
-                image: "/api/placeholder/400/200",
+                description: " MBK موديل 2019 50 سلندر تحتاج بعض الاصلاحات",
+                location: "fes",
+                image: "motorcycle.jpg",
                 date: "منذ 4 أيام"
             }
         ];
