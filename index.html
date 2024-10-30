@@ -7,6 +7,147 @@
     <title>NBI30 Marketplace</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        /* Base container styles */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Header styles */
+.logo {
+    max-width: 120px;
+    height: auto;
+}
+
+/* Search and user actions container */
+.search-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 15px 0;
+    width: 100%;
+}
+
+.select-container {
+    width: 100%;
+    max-width: 100%;
+}
+
+.user-actions {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+/* Categories grid */
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 15px 0;
+}
+
+/* Category cards */
+.category-card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.category-card img {
+    width: 40px;
+    height: 40px;
+}
+
+/* Mobile-specific styles */
+@media screen and (max-width: 768px) {
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .category-card {
+        padding: 15px;
+    }
+
+    .user-actions {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .user-actions .btn {
+        flex: 1;
+        text-align: center;
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .search-container select {
+        width: 100%;
+        padding: 10px;
+    }
+
+    /* Modal adjustments for mobile */
+    .modal-content {
+        width: 95%;
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .product-gallery {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .gallery-image {
+        width: 100%;
+        height: auto;
+    }
+}
+
+/* Tablet and larger screens */
+@media screen and (min-width: 769px) {
+    .categories-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .search-container {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .select-container {
+        max-width: 300px;
+    }
+}
+
+/* Additional styles for better mobile experience */
+.btn {
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.section-title {
+    margin: 20px 0;
+    text-align: right;
+}
+
+/* RTL specific adjustments */
+[dir="rtl"] .search-container,
+[dir="rtl"] .user-actions {
+    direction: rtl;
+}
         * {
             margin: 0;
             padding: 0;
