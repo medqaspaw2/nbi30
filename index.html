@@ -5,7 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NBI30 Marketplace</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- إضافة مكتبة Swiper للصور المتحركة -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css" rel="stylesheet">
     <style>
+
+
+
+          /* تعديل شبكة الفئات للترتيب الجديد */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        /* ستايل معرض الصور الجديد */
+        .swiper {
+            width: 100%;
+            height: 300px;
+            margin: 1rem 0;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gallery-modal img {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .gallery-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            /* تعديل شبكة الفئات للموبايل - صفين ثابتين */
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+            }
+
+            /* ترتيب الفئات بشكل محدد */
+            .category-card[data-category="cars"] { order: 1; }
+            .category-card[data-category="real-estate"] { order: 2; }
+            .category-card[data-category="phones"] { order: 3; }
+            .category-card[data-category="electronics"] { order: 4; }
+            .category-card[data-category="furniture"] { order: 5; }
+            .category-card[data-category="fashion"] { order: 6; }
+            .category-card[data-category="tools"] { order: 7; }
+            .category-card[data-category="games"] { order: 8; }
+
+            .category-card {
+                padding: 1rem;
+                aspect-ratio: 1;
+            }
+
+            .swiper {
+                height: 250px;
+            }
+        }
+
+
+
+        
+
+        
         * {
             margin: 0;
             padding: 0;
@@ -400,7 +486,110 @@
             <input type="search" class="search-box" placeholder="ابحث عن منتجات..." id="searchInput">
         </div>
 
-        
+         <!-- [Previous Header HTML remains the same] -->
+
+    <main>
+        <section class="categories">
+            <h2 class="section-title">الفئات</h2>
+            <div class="categories-grid">
+                <!-- نفس البطاقات السابقة مع إضافة خاصية الترتيب -->
+                <div class="category-card" data-category="cars">
+                    <i class="fas fa-car category-icon"></i>
+                    <h3>سيارات</h3>
+                </div>
+                <!-- [Rest of the category cards remain the same] -->
+            </div>
+        </section>
+
+        <!-- تعديل قسم معرض الصور في النافذة المنبثقة -->
+        <div id="productModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal()">&times;</span>
+                <h2 id="modalTitle"></h2>
+                
+                <!-- معرض الصور الجديد -->
+                <div class="swiper product-gallery">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="/api/placeholder/400/200" alt="صورة المنتج 1" onclick="openGalleryModal(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="/api/placeholder/400/200" alt="صورة المنتج 2" onclick="openGalleryModal(this.src)">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="/api/placeholder/400/200" alt="صورة المنتج 3" onclick="openGalleryModal(this.src)">
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+
+                <!-- نافذة تكبير الصور -->
+                <div id="galleryModal" class="gallery-modal">
+                    <span class="gallery-close" onclick="closeGalleryModal()">&times;</span>
+                    <img id="galleryImage" src="" alt="صورة مكبرة">
+                </div>
+
+                <!-- [Rest of the modal content remains the same] -->
+            </div>
+        </div>
+    </main>
+
+    <!-- إضافة مكتبة Swiper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js"></script>
+    <script>
+        // تهيئة معرض الصور
+        function initializeSwiper() {
+            new Swiper('.product-gallery', {
+                slidesPerView: 1,
+                spaceBetween: 10,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+            });
+        }
+
+        // دوال معرض الصور المكبر
+        function openGalleryModal(imgSrc) {
+            const modal = document.getElementById('galleryModal');
+            const modalImg = document.getElementById('galleryImage');
+            modal.style.display = 'flex';
+            modalImg.src = imgSrc;
+        }
+
+        function closeGalleryModal() {
+            document.getElementById('galleryModal').style.display = 'none';
+        }
+
+        // تعديل دالة فتح نافذة المنتج
+        function openProductModal(product) {
+            const modal = document.getElementById('productModal');
+            document.getElementById('modalTitle').textContent = product.title;
+            document.getElementById('modalPrice').textContent = product.price;
+            document.getElementById('modalDescription').textContent = product.description;
+            modal.style.display = 'block';
+            initializeSwiper(); // تهيئة معرض الصور عند فتح النافذة
+        }
+
+        // [Rest of the previous JavaScript remains the same]
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // [Previous event listeners remain the same]
+
+            // إغلاق نافذة الصور المكبرة عند النقر خارجها
+            document.getElementById('galleryModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeGalleryModal();
+                }
+            });
+        });
+    </script>
 
         <div class="user-actions">
             <a href="login.html" class="btn btn-primary">تسجيل الدخول</a>
