@@ -12,42 +12,98 @@
 /* Reset and base styles */
 import React from 'react';
 
-const CategoryGrid = () => {
+import React from 'react';
+
+const MarketplaceLayout = () => {
   const categories = [
-    { id: 1, icon: "🏠", name: "عقارات", },
-    { id: 2, icon: "🚗", name: "سيارات" },
-    { id: 3, icon: "💻", name: "إلكترونيات" },
-    { id: 4, icon: "📱", name: "هواتف وأجهزة لوحية" },
-    { id: 5, icon: "👕", name: "ملابس وإكسسوارات" },
-    { id: 6, icon: "🛋️", name: "أثاث منزلي" },
-    { id: 7, icon: "🎮", name: "ألعاب وترفيه" },
-    { id: 8, icon: "🔧", name: "معدات وأدوات" },
+    {
+      id: 'cars',
+      icon: <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M21.739 10.921c-1.347-.39-1.885-.538-3.552-.921 0 0-2.379-2.021-2.832-2.402-.452-.381-1.074-.615-1.74-.615-1.365 0-3.076.912-4.615.912-1.54 0-3.25-.912-4.615-.912-.666 0-1.288.234-1.74.615-.453.381-2.832 2.402-2.832 2.402-1.667.383-2.205.531-3.552.921-1.347.391-1.239 1.377-1.239 1.377l.001.371c0 .299.242.541.541.541h4.918c.299 0 .541-.242.541-.541v-.371c0-1.377 1.118-2.494 2.495-2.494 1.377 0 2.495 1.117 2.495 2.494v.371c0 .299.242.541.541.541h4.918c.299 0 .541-.242.541-.541v-.371c0-1.377 1.118-2.494 2.495-2.494 1.377 0 2.495 1.117 2.495 2.494v.371c0 .299.242.541.541.541h4.918c.299 0 .541-.242.541-.541v-.371s.108-.986-1.239-1.377z"/></svg>,
+      name: 'سيارات',
+    },
+    {
+      id: 'real-estate',
+      icon: <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l-11 9h22l-11-9zm0 3.84l6.67 5.46h-13.34l6.67-5.46zm10 8.16v9h-20v-9h2v7h16v-7h2z"/></svg>,
+      name: 'عقارات',
+    },
+    {
+      id: 'phones',
+      icon: <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17 2h-10c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-16c0-1.1-.9-2-2-2zm0 18h-10v-14h10v14z"/></svg>,
+      name: 'هواتف وأجهزة لوحية',
+    },
+    {
+      id: 'electronics',
+      icon: <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20 18c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2h-16c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h-4v2h24v-2h-4zm-16-12h16v10h-16v-10z"/></svg>,
+      name: 'إلكترونيات',
+    },
+    {
+      id: 'furniture',
+      icon: <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20 10V7c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v3c-1.1 0-2 .9-2 2v5h1.33L4 19h1l.67-2h12.67l.66 2h1l.67-2H22v-5c0-1.1-.9-2-2-2zm-9 0H6V7h5v3zm7 0h-5V7h5v3z"/></svg>,
+      name: 'أثاث منزلي',
+    }
   ];
 
   return (
-    <div className="p-4 max-w-7xl mx-auto">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {categories.map((category) => (
-          <div
-            key={category.id}
-            className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
-          >
-            <button className="w-full p-4 flex flex-col items-center justify-center space-y-3 hover:bg-gray-50 transition-colors duration-300">
-              <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#3498db] text-white text-2xl">
-                {category.icon}
-              </div>
-              <span className="text-gray-800 text-sm md:text-base font-medium text-center">
-                {category.name}
-              </span>
-            </button>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <header className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center">
+            <div className="flex-1 flex justify-end">
+              <h1 className="text-xl font-bold text-gray-900">NBI30 Marketplace</h1>
+            </div>
+            <div className="flex items-center space-x-4 space-x-reverse">
+              <button className="bg-[#3498db] text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors">
+                تسجيل الدخول
+              </button>
+              <button className="bg-[#3498db] text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors">
+                إضافة إعلان
+              </button>
+            </div>
           </div>
-        ))}
-      </div>
+          
+          {/* Search */}
+          <div className="mt-4">
+            <div className="flex items-center">
+              <input
+                type="text"
+                placeholder="ابحث عن منتجات..."
+                className="flex-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#3498db] focus:border-transparent"
+              />
+              <select className="mr-2 p-2 border border-gray-300 rounded-md">
+                <option>جميع المدن</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Categories Grid */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">الفئات</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {categories.map((category) => (
+            <div
+              key={category.id}
+              className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 p-4"
+            >
+              <a href="#" className="flex flex-col items-center space-y-3">
+                <div className="w-12 h-12 rounded-full bg-[#3498db] text-white flex items-center justify-center">
+                  {category.icon}
+                </div>
+                <span className="text-gray-900 font-medium text-center">
+                  {category.name}
+                </span>
+              </a>
+            </div>
+          ))}
+        </div>
+      </main>
     </div>
   );
 };
 
-export default CategoryGrid;
+export default MarketplaceLayout;
     </style>
 </head>
 <body>
