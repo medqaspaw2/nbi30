@@ -10,10 +10,6 @@
 
 
 /* Reset and base styles */
-import React from 'react';
-
-import React from 'react';
-
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -48,48 +44,240 @@ body {
     gap: 1rem;
 }
 
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
+/* Categories Grid - Updated for mobile */
+.categories-container {
+    max-width: 1200px;
+    margin: 1rem auto;
+    padding: 0 0.5rem;
+}
+
+.categories-grid {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+/* Mobile-specific grid */
+@media screen and (max-width: 768px) {
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+
+    .category-row {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .category-card {
+        flex: 1;
+        padding: 0.75rem;
+        min-width: 0;
+    }
+
+    .category-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
+
+    .category-name {
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+    }
+}
+
+/* Modal Styles - Enhanced */
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.modal.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
     color: #333;
-    text-decoration: none;
 }
 
-.search-container {
-    flex: 1;
-    display: flex;
-    gap: 0.5rem;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.search-input {
-    flex: 1;
-    padding: 0.5rem 1rem;
-    border: 2px solid #3498db;
-    border-radius: 4px;
-    font-size: 1rem;
-}
-
-.city-select {
-    padding: 0.5rem;
-    border: 2px solid #3498db;
-    border-radius: 4px;
-    background-color: white;
-}
-
-.auth-buttons {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.btn {
-    padding: 0.5rem 1rem;
+.modal-close {
+    background: none;
     border: none;
-    border-radius: 4px;
+    font-size: 1.5rem;
     cursor: pointer;
-    font-weight: 500;
+    color: #666;
+    padding: 0.5rem;
+    transition: color 0.2s ease;
+}
+
+.modal-close:hover {
+    color: #333;
+}
+
+.modal-body {
+    margin-bottom: 1rem;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+/* Category Cards - Enhanced */
+.category-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.category-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.category-card:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.category-icon {
+    width: 48px;
+    height: 48px;
+    background-color: #3498db;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-bottom: 0.75rem;
     transition: background-color 0.3s ease;
+}
+
+.category-card:hover .category-icon {
+    background-color: #2980b9;
+}
+
+/* Animation for modal */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-content {
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+/* Mobile-specific modal styles */
+@media screen and (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        padding: 1rem;
+        margin: 1rem;
+    }
+
+    .modal-title {
+        font-size: 1.1rem;
+    }
+
+    .modal-body {
+        font-size: 0.95rem;
+    }
+
+    .modal-footer {
+        flex-direction: column;
+    }
+
+    .modal-footer .btn {
+        width: 100%;
+        margin: 0.25rem 0;
+    }
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+.flex {
+    display: flex;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+/* Button Styles */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .btn-primary {
@@ -101,148 +289,21 @@ body {
     background-color: #2980b9;
 }
 
-/* Categories Grid */
-.categories-container {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-}
-
-.categories-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
+.btn-secondary {
+    background-color: #f8f9fa;
     color: #333;
+    border: 1px solid #ddd;
 }
 
-.categories-grid {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+.btn-secondary:hover {
+    background-color: #e9ecef;
 }
 
-.category-card {
-    background-color: white;
-    border-radius: 8px;
-    padding: 1.5rem;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.category-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.category-icon {
-    width: 48px;
-    height: 48px;
-    margin: 0 auto 1rem;
-    background-color: #3498db;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-}
-
-.category-name {
-    font-size: 1.1rem;
-    color: #333;
-    font-weight: 500;
-}
-
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-    .header-container {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .search-container {
-        flex-direction: column;
-    }
-    
-    .categories-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 1rem;
-    }
-    
-    .category-card {
-        padding: 1rem;
-    }
-    
-    .category-icon {
-        width: 40px;
-        height: 40px;
-    }
-    
-    .category-name {
-        font-size: 1rem;
-    }
-}
-
-/* Utility Classes */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-
-.shadow {
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.text-center {
-    text-align: center;
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.category-card {
-    animation: fadeIn 0.3s ease-out;
-}
-
-/* RTL Support */
-[dir="rtl"] .search-container,
-[dir="rtl"] .auth-buttons {
-    flex-direction: row-reverse;
-}
-
-/* Accessibility */
+/* Focus States */
 .btn:focus,
-.search-input:focus,
-.city-select:focus {
+.modal-close:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
-}
-
-/* Print Styles */
-@media print {
-    .header {
-        position: static;
-        box-shadow: none;
-    }
-    
-    .btn {
-        display: none;
-    }
-    
-    .category-card {
-        break-inside: avoid;
-        box-shadow: none;
-    }
 }
     </style>
 </head>
@@ -266,6 +327,22 @@ body {
             </div>
             <input type="search" class="search-box" placeholder="ابحث عن منتجات..." id="searchInput">
         </div>
+
+        <div class="modal" id="myModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">عنوان النافذة</h3>
+            <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+            محتوى النافذة المنبثقة
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary modal-close">إغلاق</button>
+            <button class="btn btn-primary">تأكيد</button>
+        </div>
+    </div>
+</div>
 
         <div class="user-actions">
             <a href="login.html" class="btn btn-primary">تسجيل الدخول</a>
