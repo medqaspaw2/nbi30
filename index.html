@@ -14,96 +14,236 @@ import React from 'react';
 
 import React from 'react';
 
-const MarketplaceLayout = () => {
-  const categories = [
-    {
-      id: 'cars',
-      icon: <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M21.739 10.921c-1.347-.39-1.885-.538-3.552-.921 0 0-2.379-2.021-2.832-2.402-.452-.381-1.074-.615-1.74-.615-1.365 0-3.076.912-4.615.912-1.54 0-3.25-.912-4.615-.912-.666 0-1.288.234-1.74.615-.453.381-2.832 2.402-2.832 2.402-1.667.383-2.205.531-3.552.921-1.347.391-1.239 1.377-1.239 1.377l.001.371c0 .299.242.541.541.541h4.918c.299 0 .541-.242.541-.541v-.371c0-1.377 1.118-2.494 2.495-2.494 1.377 0 2.495 1.117 2.495 2.494v.371c0 .299.242.541.541.541h4.918c.299 0 .541-.242.541-.541v-.371c0-1.377 1.118-2.494 2.495-2.494 1.377 0 2.495 1.117 2.495 2.494v.371c0 .299.242.541.541.541h4.918c.299 0 .541-.242.541-.541v-.371s.108-.986-1.239-1.377z"/></svg>,
-      name: 'سيارات',
-    },
-    {
-      id: 'real-estate',
-      icon: <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l-11 9h22l-11-9zm0 3.84l6.67 5.46h-13.34l6.67-5.46zm10 8.16v9h-20v-9h2v7h16v-7h2z"/></svg>,
-      name: 'عقارات',
-    },
-    {
-      id: 'phones',
-      icon: <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17 2h-10c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-16c0-1.1-.9-2-2-2zm0 18h-10v-14h10v14z"/></svg>,
-      name: 'هواتف وأجهزة لوحية',
-    },
-    {
-      id: 'electronics',
-      icon: <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20 18c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2h-16c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h-4v2h24v-2h-4zm-16-12h16v10h-16v-10z"/></svg>,
-      name: 'إلكترونيات',
-    },
-    {
-      id: 'furniture',
-      icon: <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20 10V7c0-1.1-.9-2-2-2H6c-1.1 0-2 .9-2 2v3c-1.1 0-2 .9-2 2v5h1.33L4 19h1l.67-2h12.67l.66 2h1l.67-2H22v-5c0-1.1-.9-2-2-2zm-9 0H6V7h5v3zm7 0h-5V7h5v3z"/></svg>,
-      name: 'أثاث منزلي',
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    direction: rtl;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f8f9fa;
+    line-height: 1.6;
+}
+
+/* Header Styles */
+.header {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+.search-container {
+    flex: 1;
+    display: flex;
+    gap: 0.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-input {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    border: 2px solid #3498db;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.city-select {
+    padding: 0.5rem;
+    border: 2px solid #3498db;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+/* Categories Grid */
+.categories-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.categories-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.categories-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.category-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.category-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 1rem;
+    background-color: #3498db;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.category-name {
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        align-items: stretch;
     }
-  ];
+    
+    .search-container {
+        flex-direction: column;
+    }
+    
+    .categories-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+    
+    .category-card {
+        padding: 1rem;
+    }
+    
+    .category-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .category-name {
+        font-size: 1rem;
+    }
+}
 
-  return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center">
-            <div className="flex-1 flex justify-end">
-              <h1 className="text-xl font-bold text-gray-900">NBI30 Marketplace</h1>
-            </div>
-            <div className="flex items-center space-x-4 space-x-reverse">
-              <button className="bg-[#3498db] text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors">
-                تسجيل الدخول
-              </button>
-              <button className="bg-[#3498db] text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors">
-                إضافة إعلان
-              </button>
-            </div>
-          </div>
-          
-          {/* Search */}
-          <div className="mt-4">
-            <div className="flex items-center">
-              <input
-                type="text"
-                placeholder="ابحث عن منتجات..."
-                className="flex-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#3498db] focus:border-transparent"
-              />
-              <select className="mr-2 p-2 border border-gray-300 rounded-md">
-                <option>جميع المدن</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </header>
+/* Utility Classes */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
 
-      {/* Categories Grid */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">الفئات</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {categories.map((category) => (
-            <div
-              key={category.id}
-              className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 p-4"
-            >
-              <a href="#" className="flex flex-col items-center space-y-3">
-                <div className="w-12 h-12 rounded-full bg-[#3498db] text-white flex items-center justify-center">
-                  {category.icon}
-                </div>
-                <span className="text-gray-900 font-medium text-center">
-                  {category.name}
-                </span>
-              </a>
-            </div>
-          ))}
-        </div>
-      </main>
-    </div>
-  );
-};
+.shadow {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
-export default MarketplaceLayout;
+.text-center {
+    text-align: center;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.category-card {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* RTL Support */
+[dir="rtl"] .search-container,
+[dir="rtl"] .auth-buttons {
+    flex-direction: row-reverse;
+}
+
+/* Accessibility */
+.btn:focus,
+.search-input:focus,
+.city-select:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+}
+
+/* Print Styles */
+@media print {
+    .header {
+        position: static;
+        box-shadow: none;
+    }
+    
+    .btn {
+        display: none;
+    }
+    
+    .category-card {
+        break-inside: avoid;
+        box-shadow: none;
+    }
+}
     </style>
 </head>
 <body>
