@@ -2,447 +2,278 @@
 <html dir="rtl" lang="ar">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NBI30 Marketplace</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <!-- إضافة مكتبة Swiper للصور المتحركة -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.css" rel="stylesheet">
     <style>
 
 
-
-         
-
-        /* ستايل معرض الصور الجديد */
-        .swiper {
-            width: 100%;
-            height: 300px;
-            margin: 1rem 0;
-        }
-
-        .swiper-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            cursor: pointer;
-        }
-
-        .gallery-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .gallery-modal img {
-            max-width: 90%;
-            max-height: 90vh;
-            object-fit: contain;
-        }
-
-        .gallery-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: white;
-            font-size: 30px;
-            cursor: pointer;
-        }
-
-       
-
-           
-
-            .category-card {
-                padding: 1rem;
-                aspect-ratio: 1;
-            }
-
-            .swiper {
-                height: 250px;
-            }
-        }
-
-
-
-        
-
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: system-ui, -apple-system, sans-serif;
-        }
-
-        body {
-            background-color: #f5f5f5;
-        }
-
-        header {
-            background: white;
-            padding: 1rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-         /* تعديلات جديدة للموبايل */
-        @media (max-width: 768px) {
-            /* تعديل الهيدر للموبايل */
-            header {
-                flex-direction: column;
-                padding: 0.5rem;
-            }
-
-            .logo {
-                height: 30px; /* شعار أصغر للموبايل */
-                margin-bottom: 0.5rem;
-            }
-
-            .search-container {
-                margin: 0.5rem 0;
-                flex-direction: column;
-            }
-
-            .select-container {
-                width: 100%;
-                min-width: unset;
-            }
-
-            .search-box {
-                width: 100%;
-            }
-
-            /* تعديل أزرار المستخدم */
-            .user-actions {
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                margin-top: 0.5rem;
-            }
-
-            .btn {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.9rem;
-                margin: 0;
-            }
-
-            /* تعديل شبكة الفئات للموبايل - صفين في كل سطر */
-            .categories-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.5rem;
-            }
-
-            /* تعديل بطاقات الفئات */
-            .category-card {
-                padding: 1rem;
-                aspect-ratio: 1; /* مربع تماماً */
-            }
-
-            
-
-            .category-card h3 {
-                font-size: 0.9rem; /* نص أصغر */
-                margin-top: 0.3rem;
-            }
-
-            /* تعديل شبكة المنتجات */
-            .products-grid {
-                grid-template-columns: 1fr;
-                padding: 1rem;
-                gap: 1rem;
-            }
-
-            /* تعديل النافذة المنبثقة */
-            .modal-content {
-                width: 95%;
-                margin: 1rem auto;
-                padding: 1rem;
-            }
-
-            .product-gallery {
-                grid-template-columns: 1fr;
-            }
-
-            .action-buttons {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            .action-btn {
-                width: 100%;
-                justify-content: center;
-            }
-
-            /* تعديل قسم التعليقات */
-            .comment-form {
-                margin-top: 1rem;
-            }
-
-            .comment-input {
-                font-size: 0.9rem;
-            }
-        }
-
-        /* تحسينات إضافية للشاشات الصغيرة جداً */
-        @media (max-width: 320px) {
-            .categories-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.3rem;
-            }
-
-            .category-card {
-                padding: 0.8rem;
-            }
-
-            .category-icon {
-                font-size: 1.2rem;
-            }
-
-            .category-card h3 {
-                font-size: 0.8rem;
-            }
-        }
-
-        .logo {
-            height: 40px;
-        }
-
-        .search-container {
-            flex-grow: 1;
-            margin: 0 2rem;
-            display: flex;
-            gap: 1rem;
-        }
-
-        .select-container {
-            position: relative;
-            min-width: 200px;
-        }
-
-        .city-select {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background: white;
-            cursor: pointer;
-        }
-
-        .search-box {
-            flex-grow: 1;
-            padding: 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        .btn {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-right: 1rem;
-            text-decoration: none;
-        }
-
-        .btn-primary {
-            background: #3498db;
-            color: white;
-        }
-
-        .categories {
-            padding: 2rem;
-        }
-
-        .section-title {
-            margin-bottom: 2rem;
-            color: #333;
-        }
-
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        .category-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            text-align: center;
-            transition: transform 0.2s;
-            cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .category-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .category-icon {
-            font-size: 4rem;
-            color: #3498db;
-        }
-
-        .products-grid {
-            padding: 2rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.2s;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .product-image {
-            width: 100px%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .product-info {
-            padding: 1rem;
-        }
-
-        .product-title {
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-
-        .product-meta {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1000;
-        }
-
-        .modal-content {
-            background: white;
-            width: 90%;
-            max-width: 800px;
-            margin: 2rem auto;
-            border-radius: 8px;
-            padding: 2rem;
-            position: relative;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            cursor: pointer;
-            font-size: 1.5rem;
-        }
-
-        .product-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-
-        .gallery-image {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 1rem;
-            margin: 1rem 0;
-            flex-wrap: wrap;
-        }
-
-        .action-btn {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .whatsapp-btn {
-            background: #25D366;
-            color: white;
-        }
-
-        .message-btn {
-            background: #3498db;
-            color: white;
-        }
-
-        .like-btn {
-            background: #dc3545;
-            color: white;
-        }
-
-        .report-btn {
-            background: #6c757d;
-            color: white;
-        }
-
-        .comments-section {
-            margin-top: 2rem;
-            border-top: 1px solid #ddd;
-            padding-top: 1rem;
-        }
-
-        .comment-form {
-            margin-bottom: 1rem;
-        }
-
-        .comment-input {
-            width: 100%;
-            padding: 0.5rem;
-            margin-bottom: 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        .comment {
-            background: #f8f9fa;
-            padding: 1rem;
-            border-radius: 4px;
-            margin-bottom: 1rem;
-        }
+/* Reset and base styles */
+/* Base styles remain the same */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    direction: rtl;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f8f9fa;
+    line-height: 1.6;
+}
+
+/* Enhanced Header Styles */
+.header {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.logo {
+    height: 50px;
+    width: auto;
+}
+
+@media (max-width: 768px) {
+    .logo {
+        height: 40px;
+    }
+}
+
+/* Enhanced Search Container */
+.search-container {
+    flex: 1;
+    display: flex;
+    gap: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.search-input {
+    flex: 1;
+    padding: 0.75rem 1.25rem;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    font-size: 1.1rem;
+}
+
+.city-select {
+    padding: 0.75rem;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    min-width: 150px;
+}
+
+/* Enhanced Categories Grid */
+.categories-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding: 2rem;
+}
+
+@media (max-width: 768px) {
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 1rem;
+    }
+}
+
+.category-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .category-card {
+        padding: 1rem;
+        border-radius: 8px;
+    }
+}
+
+.category-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #3498db;
+}
+
+@media (max-width: 768px) {
+    .category-icon {
+        font-size: 1.75rem;
+    }
+}
+
+/* Enhanced Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 1100;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5vh auto;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 1200px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        margin: 0;
+        padding: 1rem;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        max-height: 100vh;
+    }
+}
+
+/* Enhanced Product Gallery */
+.product-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+@media (max-width: 768px) {
+    .product-gallery {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+.gallery-image {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* Enhanced Action Buttons */
+.action-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+@media (max-width: 768px) {
+    .action-buttons {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+.action-btn {
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #3498db;
+    color: white;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.action-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Enhanced Comments Section */
+.comments-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+}
+
+.comment-input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    margin: 1rem 0;
+    resize: vertical;
+    min-height: 100px;
+}
+
+.comment {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+/* Enhanced Products Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 1rem;
+    }
+}
+
+.product-card {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+}
+
+.product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .product-image {
+        height: 150px;
+    }
+}
     </style>
 </head>
 <body>
@@ -466,110 +297,7 @@
             <input type="search" class="search-box" placeholder="ابحث عن منتجات..." id="searchInput">
         </div>
 
-         <!-- [Previous Header HTML remains the same] -->
-
-    <main>
-        <section class="categories">
-            <h2 class="section-title">الفئات</h2>
-            <div class="categories-grid">
-                <!-- نفس البطاقات السابقة مع إضافة خاصية الترتيب -->
-                <div class="category-card" data-category="cars">
-                    <i class="fas fa-car category-icon"></i>
-                    <h3>سيارات</h3>
-                </div>
-                <!-- [Rest of the category cards remain the same] -->
-            </div>
-        </section>
-
-        <!-- تعديل قسم معرض الصور في النافذة المنبثقة -->
-        <div id="productModal" class="modal">
-            <div class="modal-content">
-                <span class="close-modal" onclick="closeModal()">&times;</span>
-                <h2 id="modalTitle"></h2>
-                
-                <!-- معرض الصور الجديد -->
-                <div class="swiper product-gallery">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <img src="/api/placeholder/400/200" alt="صورة المنتج 1" onclick="openGalleryModal(this.src)">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="/api/placeholder/400/200" alt="صورة المنتج 2" onclick="openGalleryModal(this.src)">
-                        </div>
-                        <div class="swiper-slide">
-                            <img src="/api/placeholder/400/200" alt="صورة المنتج 3" onclick="openGalleryModal(this.src)">
-                        </div>
-                    </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                </div>
-
-                <!-- نافذة تكبير الصور -->
-                <div id="galleryModal" class="gallery-modal">
-                    <span class="gallery-close" onclick="closeGalleryModal()">&times;</span>
-                    <img id="galleryImage" src="" alt="صورة مكبرة">
-                </div>
-
-                <!-- [Rest of the modal content remains the same] -->
-            </div>
-        </div>
-    </main>
-
-    <!-- إضافة مكتبة Swiper -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.7/swiper-bundle.min.js"></script>
-    <script>
-        // تهيئة معرض الصور
-        function initializeSwiper() {
-            new Swiper('.product-gallery', {
-                slidesPerView: 1,
-                spaceBetween: 10,
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-            });
-        }
-
-        // دوال معرض الصور المكبر
-        function openGalleryModal(imgSrc) {
-            const modal = document.getElementById('galleryModal');
-            const modalImg = document.getElementById('galleryImage');
-            modal.style.display = 'flex';
-            modalImg.src = imgSrc;
-        }
-
-        function closeGalleryModal() {
-            document.getElementById('galleryModal').style.display = 'none';
-        }
-
-        // تعديل دالة فتح نافذة المنتج
-        function openProductModal(product) {
-            const modal = document.getElementById('productModal');
-            document.getElementById('modalTitle').textContent = product.title;
-            document.getElementById('modalPrice').textContent = product.price;
-            document.getElementById('modalDescription').textContent = product.description;
-            modal.style.display = 'block';
-            initializeSwiper(); // تهيئة معرض الصور عند فتح النافذة
-        }
-
-        // [Rest of the previous JavaScript remains the same]
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // [Previous event listeners remain the same]
-
-            // إغلاق نافذة الصور المكبرة عند النقر خارجها
-            document.getElementById('galleryModal').addEventListener('click', function(e) {
-                if (e.target === this) {
-                    closeGalleryModal();
-                }
-            });
-        });
-    </script>
+        
 
         <div class="user-actions">
             <a href="login.html" class="btn btn-primary">تسجيل الدخول</a>
