@@ -28,7 +28,16 @@ async function handleSubmit(e) {
         }
     }
 }
+document.querySelectorAll('.modal-close').forEach(button => {
+    button.addEventListener('click', () => {
+        document.querySelector('.modal').classList.remove('active');
+    });
+});
 
+// لفتح النافذة المنبثقة
+function openModal() {
+    document.querySelector('.modal').classList.add('active');
+}
 // التحقق من صحة النموذج
 function validateForm() {
     const password = document.querySelector('input[name="password"]').value;
