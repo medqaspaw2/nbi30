@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب جديد</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="logo-container">
+                <img src="nbii3o.png" alt="Logo" class="logo" >
+            </div>
+
+            <!-- حقل الاسم -->
+<div class="form-group">
+    <div class="input-with-icon">
+        <input type="text" class="form-input" name="fullname" placeholder="الاسم الكامل">
+        <i class="fas fa-user input-icon-right"></i>
+    </div>
+</div>
+
+                <!-- حقل البريد الإلكتروني -->
+<div class="form-group">
+    <div class="input-with-icon">
+        <input type="email" class="form-input" name="email" placeholder="البريد الإلكتروني">
+        <i class="fas fa-envelope input-icon-right"></i>
+    </div>
+</div>
+
+                <div class="form-group">
+                    <label class="form-label">رقم الهاتف</label>
+                    <div class="input-with-icon">
+                        <input type="tel" class="form-input" name="phone" placeholder="اكتب هنا رقم هاتفك" required>
+                        <i class="fas fa-phone input-icon"></i>
+                    </div>
+                </div>
+
+                <!--   حقل كلمة المرور -->
+<div class="form-group">
+    <div class="input-with-icon">
+        <input type="password" class="form-input password" name="password" placeholder=" كلمة المرور">
+        <i class="fas fa-lock input-icon-password"></i>
+    </div>
+</div>
+
+                <!--  تأكيد حقل كلمة المرور -->
+<div class="form-group">
+    <div class="input-with-icon">
+        <input type="password" class="form-input password" name="password" placeholder="تأكيد كلمة المرور">
+        <i class="fas fa-lock input-icon-password"></i>
+    </div>
+</div>
+                <div class="terms-checkbox">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">أوافق على <a href="#">شروط الاستخدام</a> و <a href="#">سياسة الخصوصية</a></label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    إنشاء حساب
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+
+                <div class="divider">
+                    <span class="divider-text">أو</span>
+                </div>
+
+                <button type="button" class="btn btn-facebook" onclick="facebookLogin()">
+                    <i class="fab fa-facebook-f"></i>
+                    المتابعة باستخدام Facebook
+                </button>
+
+                <button type="button" class="btn btn-google" onclick="googleLogin()">
+                    <img src="google-icon.png" alt="Google" width="20">
+                    المتابعة باستخدام Google
+                </button>
+
+                <p class="login-link">لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal التحقق -->
+    <div id="verification-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <h3 class="modal-title">تحقق من بريدك الإلكتروني</h3>
+            <p class="modal-text">
+                لقد أرسلنا رسالة إلى بريدك الإلكتروني تحتوي على رابط تفعيل الحساب.
+                يرجى التحقق من صندوق الوارد الخاص بك واتباع التعليمات لتفعيل حسابك.
+            </p>
+            <button class="btn btn-primary" onclick="closeModal()">حسناً</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

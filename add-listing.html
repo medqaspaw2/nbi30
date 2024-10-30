@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة إعلان جديد</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/add-listing.css">
+</head>
+<body>
+    <div class="container">
+        <form id="addListingForm" method="POST" action="process-listing.php" enctype="multipart/form-data">
+            <div class="form-header">
+                <h1>إضافة إعلان جديد</h1>
+                <p>قم بملء جميع المعلومات المطلوبة لإضافة إعلانك</p>
+            </div>
+
+            <!-- معلومات أساسية -->
+            <div class="form-section">
+                <h2>المعلومات الأساسية</h2>
+                
+                <div class="form-group">
+                    <label for="title">عنوان الإعلان*</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">الفئة*</label>
+                    <select id="category" name="category" required>
+                        <option value="">اختر الفئة</option>
+                        <option value="electronics">إلكترونيات</option>
+                        <option value="vehicles">سيارات</option>
+                        <option value="real-estate">عقارات</option>
+                        <option value="furniture">أثاث</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">وصف الإعلان*</label>
+                    <textarea id="description" name="description" rows="5" required></textarea>
+                    <div class="char-count">0/1000</div>
+                </div>
+            </div>
+
+            <!-- السعر والتفاصيل -->
+            <div class="form-section">
+                <h2>السعر والتفاصيل</h2>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="price">السعر*</label>
+                        <div class="price-input">
+                            <input type="number" id="price" name="price" required>
+                            <span class="currency">درهم</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="condition">الحالة*</label>
+                        <select id="condition" name="condition" required>
+                            <option value="">اختر الحالة</option>
+                            <option value="new">جديد</option>
+                            <option value="used">مستعمل</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الصور -->
+            <div class="form-section">
+                <h2>صور الإعلان</h2>
+                
+                <div class="image-upload-container">
+                    <div class="image-upload-main">
+                        <input type="file" id="mainImage" name="mainImage" accept="image/*" required>
+                        <label for="mainImage">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>اختر الصورة الرئيسية*</span>
+                        </label>
+                        <div class="preview-container" id="mainImagePreview"></div>
+                    </div>
+
+                    <div class="additional-images">
+                        <input type="file" id="additionalImages" name="additionalImages[]" accept="image/*" multiple>
+                        <label for="additionalImages">
+                            <i class="fas fa-plus"></i>
+                            <span>إضافة المزيد من الصور (حتى 5 صور)</span>
+                        </label>
+                        <div class="preview-container" id="additionalImagesPreview"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- معلومات الاتصال -->
+            <div class="form-section">
+                <h2>معلومات الاتصال</h2>
+                
+                <div class="form-group">
+                    <label for="location">الموقع*</label>
+                    <select id="location" name="location" required>
+                        <option value="">اختر المدينة</option>
+                        <option value="casablanca">الدار البيضاء</option>
+                        <option value="rabat">الرباط</option>
+                        <option value="marrakech">مراكش</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">رقم الهاتف*</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="contact-preferences">
+                    <label>تفضيلات الاتصال:</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="allowCalls" name="contact_preferences[]" value="calls">
+                        <label for="allowCalls">اتصال هاتفي</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="allowWhatsapp" name="contact_preferences[]" value="whatsapp">
+                        <label for="allowWhatsapp">واتساب</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">نشر الإعلان</button>
+                <button type="button" class="btn-secondary">حفظ كمسودة</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Modal للتحميل -->
+    <div id="loadingModal" class="modal">
+        <div class="modal-content">
+            <div class="loader"></div>
+            <p>جاري نشر إعلانك...</p>
+        </div>
+    </div>
+
+    <!-- Modal للنجاح -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <i class="fas fa-check-circle"></i>
+            <h3>تم نشر إعلانك بنجاح!</h3>
+            <p>سيتم مراجعة إعلانك ونشره في أقرب وقت.</p>
+            <button class="btn-primary">العودة للرئيسية</button>
+        </div>
+    </div>
+
+    <script src="js/add-listing.js"></script>
+</body>
+</html>

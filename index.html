@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBI30 Marketplace</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background: white;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 40px;
+        }
+
+        .search-container {
+            flex-grow: 1;
+            margin: 0 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .select-container {
+            position: relative;
+            min-width: 200px;
+        }
+
+        .city-select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .search-box {
+            flex-grow: 1;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 1rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+
+        .categories {
+            padding: 2rem;
+        }
+
+        .section-title {
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .category-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.2s;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-icon {
+            font-size: 2rem;
+            color: #3498db;
+        }
+
+        .products-grid {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1rem;
+        }
+
+        .product-title {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .product-meta {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 800px;
+            margin: 2rem auto;
+            border-radius: 8px;
+            padding: 2rem;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .product-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+        }
+
+        .message-btn {
+            background: #3498db;
+            color: white;
+        }
+
+        .like-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        .report-btn {
+            background: #6c757d;
+            color: white;
+        }
+
+        .comments-section {
+            margin-top: 2rem;
+            border-top: 1px solid #ddd;
+            padding-top: 1rem;
+        }
+
+        .comment-form {
+            margin-bottom: 1rem;
+        }
+
+        .comment-input {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .comment {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="assets\images\nbii3o.png" alt="NBI30 Marketplace" class="logo">
+        
+        <div class="search-container">
+            <div class="select-container">
+                <select class="city-select" id="citySelect">
+                    <option value="all">جميع المدن</option>
+                    <option value="casablanca">الدار البيضاء</option>
+                    <option value="rabat">الرباط</option>
+                    <option value="fes">فاس</option>
+                    <option value="marrakech">مراكش</option>
+                    <option value="tangier">طنجة</option>
+                    <option value="agadir">أكادير</option>
+                </select>
+            </div>
+            <input type="search" class="search-box" placeholder="ابحث عن منتجات..." id="searchInput">
+        </div>
+
+        <div class="user-actions">
+            <a href="login.html" class="btn btn-primary">تسجيل الدخول</a>
+            <a href="add-listing.html" class="btn btn-primary">إضافة إعلان</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="categories">
+            <h2 class="section-title">الفئات</h2>
+            <div class="categories-grid">
+                <div class="category-card" data-category="cars">
+                    <i class="fas fa-car category-icon"></i>
+                    <h3>سيارات</h3>
+                </div>
+                <div class="category-card" data-category="real-estate">
+                    <i class="fas fa-home category-icon"></i>
+                    <h3>عقارات</h3>
+                </div>
+                <div class="category-card" data-category="phones">
+                    <i class="fas fa-mobile-alt category-icon"></i>
+                    <h3>هواتف وأجهزة لوحية</h3>
+                </div>
+                <div class="category-card" data-category="electronics">
+                    <i class="fas fa-laptop category-icon"></i>
+                    <h3>إلكترونيات</h3>
+                </div>
+                <div class="category-card" data-category="furniture">
+                    <i class="fas fa-couch category-icon"></i>
+                    <h3>أثاث منزلي</h3>
+                </div>
+                <div class="category-card" data-category="fashion">
+                    <i class="fas fa-tshirt category-icon"></i>
+                    <h3>ملابس وإكسسوارات</h3>
+                </div>
+                <div class="category-card" data-category="tools">
+                    <i class="fas fa-tools category-icon"></i>
+                    <h3>معدات وأدوات</h3>
+                </div>
+                <div class="category-card" data-category="games">
+                    <i class="fas fa-gamepad category-icon"></i>
+                    <h3>ألعاب وترفيه</h3>
+                </div>
+            </div>
+        </section>
+
+        <section class="products-grid" id="productsGrid">
+            <!-- Products will be dynamically loaded here -->
+        </section>
+    </main>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div class="product-gallery">
+                <img src="/api/placeholder/400/200" alt="صورة المنتج 1" class="gallery-image">
+                <img src="/api/placeholder/400/200" alt="صورة المنتج 2" class="gallery-image">
+                <img src="/api/placeholder/400/200" alt="صورة المنتج 3" class="gallery-image">
+            </div>
+            <div id="modalPrice" class="product-price"></div>
+            <p id="modalDescription" class="product-description"></p>
+            <div class="action-buttons">
+                <button class="action-btn whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i>
+                    واتساب
+                </button>
+                <button class="action-btn message-btn">
+                    <i class="fas fa-envelope"></i>
+                    رسالة
+                </button>
+                <button class="action-btn like-btn">
+                    <i class="fas fa-heart"></i>
+                    إعجاب
+                </button>
+                <button class="action-btn report-btn">
+                    <i class="fas fa-flag"></i>
+                    إبلاغ
+                </button>
+            </div>
+            <div class="comments-section">
+                <h3>التعليقات</h3>
+                <form class="comment-form">
+                    <textarea class="comment-input" placeholder="اكتب تعليقك هنا..."></textarea>
+                    <button type="submit" class="btn btn-primary">إرسال</button>
+                </form>
+                <div class="comments-list">
+                    <div class="comment">
+                        <strong>أحمد</strong>
+                        <p>منتج رائع! هل السعر قابل للتفاوض؟</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const products = {
+            cars: [
+                {
+                    id: 'car1',
+                    title: "سيارة BMW الفئة السابعة 2020",
+                    price: "450,000 درهم",
+                    description: "سيارة BMW الفئة السابعة 2020 بحالة ممتازة، لون أسود، فرش جلد، كاميرا خلفية، حساسات ركن.",
+                    location: "casablanca",
+                    image: "/api/placeholder/400/200",
+                    date: "منذ 3 أيام"
+                },
+                {
+                    id: 'car2',
+                    title: "مرسيدس E-Class 2021",
+                    price: "500,000 درهم",
+                    description: "مرسيدس E-Class موديل 2021، حالة ممتازة، فل اوبشن",
+                    location: "rabat",
+                    image: "/api/placeholder/400/200",
+                    date: "منذ 5 أيام"
+                }
+            ],
+            phones: [
+                {
+                    id: 'phone1',
+                    title: "iPhone 13 Pro Max - 256GB",
+                    price: "12,000 درهم",
+                    description: "هاتف iPhone 13 Pro Max بذاكرة 256GB، لون سيرا بلو، حالة ممتازة",
+                    location: "rabat",
+                    image: "/api/placeholder/400/200",
+                    date: "منذ يومين"
+                }
+            ]
+        };
+
+        let currentCategory = 'all';
+        let currentCity = 'all';
+        let searchQuery = '';
+
+        function filterProducts() {
+            const productsGrid = document.getElementById('productsGrid');
+            productsGrid.innerHTML = '';
+
+            let filteredProducts = [];
+            
+            if (currentCategory === 'all') {
+                Object.values(products).forEach(categoryProducts => {
+                    filteredProducts = filteredProducts.concat(categoryProducts);
+                });
+            } else {
+                filteredProducts = products[currentCategory] || [];
+            }
+
+            // Filter by city
+            if (currentCity !== 'all') {
+                filteredProducts = filteredProducts.filter(product => product.location === currentCity);
+            }
+
+            // Filter by search query
+            if (searchQuery) {
+                filteredProducts = filteredProducts.filter(product => 
+                    product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+product.description.toLowerCase().includes(searchQuery.toLowerCase())
+                );
+            }
+
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.onclick = () => openProductModal(product);
+                
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.title}" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">${product.title}</h3>
+                        <div class="product-price">${product.price}</div>
+                        <div class="product-meta">
+                            <span class="product-location">${getCityName(product.location)}</span>
+                            <span>${product.date}</span>
+                        </div>
+                    </div>
+                `;
+
+                productsGrid.appendChild(productCard);
+            });
+
+            if (filteredProducts.length === 0) {
+                productsGrid.innerHTML = '<div class="no-results">لا توجد نتائج مطابقة للبحث</div>';
+            }
+        }
+
+        function getCityName(cityCode) {
+            const cities = {
+                'casablanca': 'الدار البيضاء',
+                'rabat': 'الرباط',
+                'fes': 'فاس',
+                'marrakech': 'مراكش',
+                'tangier': 'طنجة',
+                'agadir': 'أكادير'
+            };
+            return cities[cityCode] || cityCode;
+        }
+
+        function openProductModal(product) {
+            const modal = document.getElementById('productModal');
+            
+            document.getElementById('modalTitle').textContent = product.title;
+            document.getElementById('modalPrice').textContent = product.price;
+            document.getElementById('modalDescription').textContent = product.description;
+            
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').style.display = 'none';
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize products
+            filterProducts();
+
+            // Category filters
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    currentCategory = card.dataset.category;
+                    document.querySelectorAll('.category-card').forEach(c => 
+                        c.style.backgroundColor = c === card ? '#f0f0f0' : 'white');
+                    filterProducts();
+                });
+            });
+
+            // City filter
+            document.getElementById('citySelect').addEventListener('change', (e) => {
+                currentCity = e.target.value;
+                filterProducts();
+            });
+
+            // Search functionality
+            let searchTimeout;
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    searchQuery = e.target.value;
+                    filterProducts();
+                }, 300);
+            });
+
+            // WhatsApp button
+            document.querySelector('.whatsapp-btn').addEventListener('click', (e) => {
+                e.stopPropagation();
+                window.open(`https://wa.me/212600000000`);
+            });
+
+            // Like button
+            document.querySelector('.like-btn').addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.classList.toggle('active');
+                const icon = this.querySelector('i');
+                if (this.classList.contains('active')) {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                } else {
+                    icon.classList.remove('fas');
+                    icon.classList.add('far');
+                }
+            });
+
+            // Comment form
+            document.querySelector('.comment-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                const commentText = this.querySelector('.comment-input').value;
+                if (commentText.trim()) {
+                    const newComment = document.createElement('div');
+                    newComment.className = 'comment';
+                    newComment.innerHTML = `
+                        <strong>أنت</strong>
+                        <p>${commentText}</p>
+                    `;
+                    document.querySelector('.comments-list').prepend(newComment);
+                    this.reset();
+                }
+            });
+
+            // Close modal on outside click
+            window.addEventListener('click', (e) => {
+                const modal = document.getElementById('productModal');
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+        });
+
+        // Add sample products for other categories
+        products.electronics = [
+            {
+                id: 'elec1',
+                title: "لابتوب MacBook Pro 2023",
+                price: "25,000 درهم",
+                description: "لابتوب MacBook Pro موديل 2023، معالج M2، ذاكرة 16GB",
+                location: "casablanca",
+                image: "/api/placeholder/400/200",
+                date: "منذ يوم واحد"
+            }
+        ];
+
+        products.furniture = [
+            {
+                id: 'furn1',
+                title: "طقم كنب مودرن",
+                price: "8,000 درهم",
+                description: "طقم كنب مودرن 7 مقاعد، لون رمادي، قماش مستورد",
+                location: "marrakech",
+                image: "/api/placeholder/400/200",
+                date: "منذ 4 أيام"
+            }
+        ];
+    </script>
+</body>
+</html>

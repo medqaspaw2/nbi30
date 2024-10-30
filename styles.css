@@ -1,0 +1,323 @@
+/* Reset & Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cairo', sans-serif;
+}
+
+body {
+    background-color: #f7f9fc;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 480px;
+    margin: 20px auto;
+}
+
+.form-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 32px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #2d3748;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #fff;
+}
+
+.form-input::placeholder {
+    color: #a0aec0;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+/* Input with icon */
+.input-with-icon {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a0aec0;
+}
+
+/* Buttons */
+.btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+    transform: translateY(-1px);
+}
+
+.btn-facebook {
+    background-color: #1877f2;
+    color: white;
+}
+
+.btn-facebook:hover {
+    background-color: #166fe5;
+}
+
+.btn-google {
+    background-color: white;
+    border: 2px solid #e2e8f0;
+    color: #4a5568;
+}
+
+.btn-google:hover {
+    background-color: #f8fafc;
+}
+
+/* Terms Checkbox */
+.terms-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 8px;
+}
+
+.terms-checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.terms-checkbox label {
+    color: #4a5568;
+    font-size: 0.9rem;
+}
+
+.terms-checkbox a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+/* Divider */
+.divider {
+    position: relative;
+    text-align: center;
+    margin: 24px 0;
+}
+
+.divider::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #e2e8f0;
+    z-index: 1;
+}
+
+.divider-text {
+    background-color: white;
+    padding: 0 16px;
+    color: #718096;
+    position: relative;
+    z-index: 2;
+    font-size: 0.9rem;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 32px;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+.modal-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    background-color: #ebf8ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-icon i {
+    color: #3498db;
+    font-size: 32px;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    color: #2d3748;
+    margin-bottom: 12px;
+}
+
+.modal-text {
+    color: #718096;
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .form-container {
+        padding: 24px;
+    }
+
+    .btn {
+        padding: 12px;
+    }
+}
+/* تحديث أحجام وموضع الشعار */
+.logo {
+    display: block;
+    margin: 0 auto 32px;
+    max-width: 180px; /* تحديد الحجم الأقصى للشعار */
+    height: auto;
+    width: 100%;
+}
+
+/* تحديث موضع الأيقونات في حقول الإدخال */
+.input-with-icon {
+    position: relative;
+}
+
+/* أيقونات الاسم والبريد الإلكتروني والهاتف */
+.input-with-icon .input-icon-right {
+    position: absolute;
+    left: 12px; /* تغيير من right إلى left */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a0aec0;
+}
+
+/* أيقونات كلمة المرور */
+.input-with-icon .input-icon-password {
+    position: absolute;
+    right: 12px; /* تبقى على اليمين */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a0aec0;
+}
+
+/* تعديل padding الحقول لمراعاة موضع الأيقونات */
+.form-input {
+    padding-left: 40px; /* مساحة للأيقونات على اليسار */
+    padding-right: 16px;
+}
+
+.form-input.password {
+    padding-left: 16px;
+    padding-right: 40px; /* مساحة للأيقونات على اليمين */
+}
+
+/* تحسين التجاوب مع الشاشات الصغيرة */
+@media (max-width: 480px) {
+    .logo {
+        max-width: 140px; /* حجم أصغر للشعار على الشاشات الصغيرة */
+    }
+    
+    /* إعادة ضبط موضع الأيقونات على الشاشات الصغيرة */
+    .input-with-icon .input-icon-right,
+    .input-with-icon .input-icon-password {
+        right: 12px;
+        left: auto;
+    }
+    
+    .form-input,
+    .form-input.password {
+        padding-right: 40px;
+        padding-left: 16px;
+    }
+}
