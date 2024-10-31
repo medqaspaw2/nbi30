@@ -19,11 +19,14 @@
 
 
 
-        /* Enhanced Header Layout */
+      /* Header Styles */
 .header {
-    padding: 1rem;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 0.5rem;
 }
 
 .header-container {
@@ -32,20 +35,30 @@
     display: flex;
     align-items: center;
     gap: 1.5rem;
+    justify-content: space-between;
 }
 
-/* Logo Style */
+/* Logo Section */
+.logo-section {
+    flex-shrink: 0;
+}
+
 .logo {
     height: 40px;
     width: auto;
 }
 
-/* Search Container Style */
-.search-container {
+/* Search Section */
+.search-section {
     display: flex;
     gap: 1rem;
     flex: 1;
-    align-items: center;
+    justify-content: center;
+    max-width: 600px;
+}
+
+.select-container {
+    min-width: 120px;
 }
 
 .search-box {
@@ -53,22 +66,20 @@
     padding: 0.75rem;
     border: 2px solid #3498db;
     border-radius: 8px;
-    min-width: 150px;
 }
 
 .city-select {
+    width: 100%;
     padding: 0.75rem;
     border: 2px solid #3498db;
     border-radius: 8px;
-    min-width: 150px;
 }
 
-/* User Actions Style */
+/* User Actions */
 .user-actions {
     display: flex;
     gap: 1rem;
-    align-items: center;
-    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 /* Modal Fixes */
@@ -92,92 +103,81 @@
     width: 90%;
     max-width: 1200px;
     position: relative;
+    overflow-y: auto;
+    height: auto;
+    max-height: calc(100vh - 40px);
 }
 
-.product-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-    margin: 1rem 0;
-}
-
-.gallery-image {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-/* Mobile Specific Styles */
+/* Responsive Modal */
 @media (max-width: 768px) {
     .header-container {
-        flex-direction: column;
-        align-items: stretch;
+        flex-wrap: wrap;
+        gap: 1rem;
     }
 
-    .search-container {
+    .search-section {
+        order: 2;
+        flex-basis: 100%;
         flex-direction: column;
     }
 
     .user-actions {
+        order: 3;
+        width: 100%;
         justify-content: center;
-        flex-wrap: wrap;
+    }
+
+    .modal {
+        align-items: flex-start;
     }
 
     .modal-content {
         margin: 0;
-        min-height: 100vh;
         width: 100%;
+        height: 100vh;
         border-radius: 0;
         padding: 1rem;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .product-gallery {
         grid-template-columns: 1fr;
+        gap: 1rem;
     }
 
     .gallery-image {
-        height: 200px;
+        width: 100%;
+        height: auto;
+        max-height: 300px;
+        object-fit: contain;
     }
 
     .action-buttons {
         grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
     }
 }
 
-/* Desktop Specific Styles */
+/* Desktop Specific */
 @media (min-width: 769px) {
     .header-container {
-        flex-direction: row;
-        justify-content: space-between;
+        flex-wrap: nowrap;
     }
 
-    .search-container {
+    .search-section {
         flex-direction: row;
-        max-width: 50%;
     }
 
     .modal-content {
         margin: 5vh auto;
+        height: auto;
         max-height: 90vh;
     }
 }
 
-/* Close Button Style */
-.close-modal {
-    position: absolute;
-    right: 1rem;
-    top: 1rem;
-    font-size: 2rem;
-    cursor: pointer;
-    color: #666;
-    z-index: 1;
-}
-
-/* Enhanced Modal Scrolling */
+/* Modal Content Scroll */
 .modal-content {
-    overflow-y: auto;
-    max-height: 90vh;
     scrollbar-width: thin;
     scrollbar-color: #3498db #f0f0f0;
 }
@@ -195,6 +195,20 @@
     border-radius: 4px;
 }
 
+/* Fix Modal Images */
+.product-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.gallery-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+}
 
 
 
@@ -630,12 +644,13 @@ body {
     </style>
 </head>
 <body>
-    <header>
-        <img src="nbii3o.png" alt="NBI30 Marketplace" class="logo">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-  <!-- All the existing content goes here -->
-</div>
-        <div class="search-container">
+    <header class="header">
+    <div class="header-container">
+        <div class="logo-section">
+            <img src="nbii3o.png" alt="NBI30 Marketplace" class="logo">
+        </div>
+        
+        <div class="search-section">
             <div class="select-container">
                 <select class="city-select" id="citySelect">
                     <option value="all">جميع المدن</option>
@@ -650,14 +665,12 @@ body {
             <input type="search" class="search-box" placeholder="ابحث عن منتجات..." id="searchInput">
         </div>
 
-        
-
         <div class="user-actions">
             <a href="login.html" class="btn btn-primary">تسجيل الدخول</a>
             <a href="add-listing.html" class="btn btn-primary">إضافة إعلان</a>
         </div>
-    </header>
-
+    </div>
+</header>
     <main>
         <section class="categories">
             <h2 class="section-title">الفئات</h2>
