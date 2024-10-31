@@ -99,38 +99,3 @@ function showError(message) {
 
 
 
-// دالة فتح النافذة المنبثقة
-function openModal(adId) {
-  const modal = document.getElementById('adModal');
-  const modalContent = document.getElementById('modalContent');
-  
-  // منع التمرير في الخلفية
-  document.body.classList.add('modal-open');
-  
-  // تحميل محتوى الإعلان
-  loadAdContent(adId);
-  
-  modal.style.display = 'flex';
-  
-  // معالجة التمرير داخل النافذة المنبثقة
-  modalContent.addEventListener('touchstart', function(e) {
-    if (modalContent.scrollHeight > modalContent.clientHeight) {
-      e.stopPropagation();
-    }
-  });
-}
-
-// دالة إغلاق النافذة المنبثقة
-function closeModal() {
-  const modal = document.getElementById('adModal');
-  document.body.classList.remove('modal-open');
-  modal.style.display = 'none';
-}
-
-// معالجة النقر خارج النافذة المنبثقة
-window.onclick = function(event) {
-  const modal = document.getElementById('adModal');
-  if (event.target === modal) {
-    closeModal();
-  }
-}
