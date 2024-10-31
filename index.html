@@ -17,25 +17,7 @@
 
 
 
-
-
-
-
-
-/* Reset Mobile Viewport */
-@viewport {
-  width: device-width;
-  zoom: 1.0;
-}
-
-/* Base Mobile Fixes */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    direction: rtl;
-}
-
+        /* Reset padding and margin */
 body {
     margin: 0;
     padding: 0;
@@ -43,114 +25,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Header Mobile Fixes */
-.header {
-    width: 100%;
-    padding: 0.5rem;
-}
-
-.header-container {
-    padding: 0 0.5rem;
-    width: 100%;
-    max-width: 100%;
-}
-
-/* Search Section Mobile Fixes */
-@media (max-width: 768px) {
-    .search-section {
-        flex-direction: column;
-        width: 100%;
-        padding: 0 0.5rem;
-    }
-
-    .select-container {
-        width: 100%;
-        margin-bottom: 0.5rem;
-    }
-
-    .search-box {
-        width: 100%;
-    }
-
-    .user-actions {
-        width: 100%;
-        justify-content: space-between;
-        padding: 0.5rem;
-    }
-}
-
-/* Categories Grid Mobile Fixes */
-@media (max-width: 768px) {
-    .categories-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.5rem;
-        padding: 0.5rem;
-        width: 100%;
-    }
-
-    .category-card {
-        padding: 1rem;
-    }
-}
-
-/* Products Grid Mobile Fixes */
-@media (max-width: 768px) {
-    .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.5rem;
-        padding: 0.5rem;
-        width: 100%;
-    }
-
-    .product-card {
-        width: 100%;
-    }
-}
-
-/* Modal Mobile Fixes */
-@media (max-width: 768px) {
-    .modal {
-        padding: 0;
-    }
-
-    .modal-content {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        border-radius: 0;
-        padding: 1rem;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .product-gallery {
-        grid-template-columns: 1fr;
-        gap: 0.5rem;
-    }
-
-    .gallery-image {
-        width: 100%;
-        height: auto;
-        max-height: 250px;
-        object-fit: contain;
-    }
-
-    .action-buttons {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.5rem;
-    }
-
-    .comments-section {
-        padding: 1rem 0;
-    }
-}
-
-/* Fix for Content Width */
+/* Container adjustments */
 .container {
     width: 100%;
     max-width: 100%;
@@ -158,33 +33,147 @@ body {
     margin: 0;
 }
 
-main {
+/* Header fixes for mobile */
+.header {
     width: 100%;
-    max-width: 100%;
-    padding: 0;
+    padding: 0.5rem;
+}
+
+.header-container {
+    width: 100%;
+    padding: 0 0.5rem;
+    margin: 0;
+    gap: 0.5rem;
+}
+
+/* Search section mobile fixes */
+.search-section {
+    width: 100%;
+    padding: 0 0.5rem;
+    gap: 0.5rem;
+}
+
+.search-box {
+    width: 100%;
     margin: 0;
 }
 
-/* Button Fixes for Mobile */
-@media (max-width: 768px) {
-    .btn-primary {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-        white-space: nowrap;
-    }
-
-    .action-btn {
-        padding: 0.5rem;
-        font-size: 0.9rem;
-    }
-}
-
-/* Fix for Search Container */
-.search-container {
+/* Products grid mobile fixes */
+.products-grid {
     width: 100%;
-    max-width: 100%;
-    padding: 0 0.5rem;
+    padding: 0.5rem;
+    gap: 0.5rem;
+    margin: 0;
 }
+
+/* Modal fixes for mobile */
+.modal {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 1rem;
+    border-radius: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Product gallery mobile fixes */
+.product-gallery {
+    width: 100%;
+    gap: 0.5rem;
+    padding: 0;
+}
+
+.gallery-image {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: contain;
+}
+
+/* Action buttons mobile fixes */
+.action-buttons {
+    width: 100%;
+    gap: 0.5rem;
+    padding: 0;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* Comments section mobile fixes */
+.comments-section {
+    width: 100%;
+    padding: 1rem 0;
+}
+
+.comment-form {
+    width: 100%;
+    padding: 0;
+}
+
+/* Media queries for better mobile handling */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+    }
+
+    .search-section {
+        flex-direction: column;
+    }
+
+    .user-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .product-card {
+        margin: 0;
+        width: 100%;
+    }
+
+    .modal-content {
+        padding: 1rem;
+    }
+
+    .product-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .action-buttons {
+        margin: 1rem 0;
+    }
+}
+
+/* RTL specific fixes */
+[dir="rtl"] .modal-content {
+    left: 0;
+    right: 0;
+}
+
+[dir="rtl"] .header-container,
+[dir="rtl"] .search-section,
+[dir="rtl"] .user-actions {
+    direction: rtl;
+}
+
+
+
+
+
+
+
+
 
 
         
