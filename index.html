@@ -18,6 +18,197 @@
 
 
 
+
+        /* Enhanced Header Layout */
+.header {
+    padding: 1rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Logo Style */
+.logo {
+    height: 40px;
+    width: auto;
+}
+
+/* Search Container Style */
+.search-container {
+    display: flex;
+    gap: 1rem;
+    flex: 1;
+    align-items: center;
+}
+
+.search-box {
+    flex: 1;
+    padding: 0.75rem;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    min-width: 150px;
+}
+
+.city-select {
+    padding: 0.75rem;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    min-width: 150px;
+}
+
+/* User Actions Style */
+.user-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    white-space: nowrap;
+}
+
+/* Modal Fixes */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 1100;
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 20px auto;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 1200px;
+    position: relative;
+}
+
+.product-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.gallery-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Mobile Specific Styles */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-container {
+        flex-direction: column;
+    }
+
+    .user-actions {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .modal-content {
+        margin: 0;
+        min-height: 100vh;
+        width: 100%;
+        border-radius: 0;
+        padding: 1rem;
+    }
+
+    .product-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-image {
+        height: 200px;
+    }
+
+    .action-buttons {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop Specific Styles */
+@media (min-width: 769px) {
+    .header-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .search-container {
+        flex-direction: row;
+        max-width: 50%;
+    }
+
+    .modal-content {
+        margin: 5vh auto;
+        max-height: 90vh;
+    }
+}
+
+/* Close Button Style */
+.close-modal {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #666;
+    z-index: 1;
+}
+
+/* Enhanced Modal Scrolling */
+.modal-content {
+    overflow-y: auto;
+    max-height: 90vh;
+    scrollbar-width: thin;
+    scrollbar-color: #3498db #f0f0f0;
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: #f0f0f0;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background-color: #3498db;
+    border-radius: 4px;
+}
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
         /* Enhanced Button Styles */
 .action-btn,
 .btn-primary,
